@@ -13,7 +13,7 @@ import "./App.css";
 
 function App() {
   const [data, setData] = useState([]);
-  const baseURL = "https://stormy-bastion-90148.herokuapp.com/quote/";
+  const baseURL = process.env.REACT_APP_API_KEY;
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
   const titleRef = useRef(null);
