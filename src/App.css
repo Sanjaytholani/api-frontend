@@ -5,13 +5,26 @@
   margin-top: 10px;
   margin-left: 10px;
   text-align: center;
+  background: linear-gradient(35deg, #ccffff, #ffcccc);
+  border-radius: 5px;
+  padding: 7px 7px 7px 7px;
+  margin-right: 10px;
 }
+
+.app__hr {
+  height: 2px;
+  border-width: 0;
+  color: gray;
+  background-color: gray;
+  margin: 4px 0px 4px 0px;
+}
+
 .app__form {
   max-width: 350px;
   display: flex;
   flex-direction: column;
 }
-.course__list {
+.quote__list {
   text-align: center;
 }
 .list {
@@ -19,27 +32,27 @@
   align-items: center;
   justify-content: space-around;
 }
-.course__container {
+.quote__container {
   margin: 10px auto;
   max-width: 500px;
   text-align: center;
 }
-.course {
+.quote {
   margin-bottom: 10px;
   text-align: center;
   width: 300px;
 }
-.course__title {
+.quote__title {
   display: flex;
   align-items: center;
 }
-.course__margin {
+.quote__margin {
   margin-bottom: 10px;
 }
-.course__title > h4 {
+.quote__title > h4 {
   margin-right: 5px;
 }
-.course__buttons {
+.quote__buttons {
   display: flex;
   flex-direction: column;
 }

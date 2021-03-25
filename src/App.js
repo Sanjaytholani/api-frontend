@@ -13,7 +13,7 @@ import "./App.css";
 
 function App() {
   const [data, setData] = useState([]);
-  const baseURL = "http://localhost:3000/posts/";
+  const baseURL = "https://stormy-bastion-90148.herokuapp.com/quote/";
   const [toggle, setToggle] = useState(false);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
@@ -31,8 +31,8 @@ function App() {
     e.preventDefault();
     axios
       .post(baseURL, {
-        title: titleRef.current.value,
-        description: desRef.current.value,
+        quote: titleRef.current.value,
+        author: desRef.current.value,
       })
       .then(function (response) {
         console.log(response);
@@ -59,8 +59,8 @@ function App() {
   const handelUpdate = () => {
     axios
       .patch(`${baseURL}/${id}`, {
-        title: titleURef.current.value,
-        description: desURef.current.value,
+        quote: titleURef.current.value,
+        author: desURef.current.value,
       })
       .then((response) => {
         console.log(response);
@@ -70,41 +70,42 @@ function App() {
   };
   return (
     <div className="app">
-      <h1>Course Details</h1>
+      <h1>API Modifier APP</h1>
       <form className="app__form">
-        <h4>Enter Title and Description of the course</h4>
+        <h4>Enter Quote and Author</h4>
         <TextField
           margin="dense"
           id="title"
-          label="Title"
+          label="Quote"
           inputRef={titleRef}
         />
         <TextField
           margin="dense"
           id="description"
-          label="Description"
+          label="Author"
           inputRef={desRef}
         />
         <Button type="submit" onClick={handelSubmit}>
-          Add Course
+          Add Quote
         </Button>
       </form>
-      <div className="course__list">
-        <h3>All Courses Available</h3>
-        <div className="course__container">
+      <hr className="app__hr" />
+      <div className="quote__list">
+        <h3>All Quotes</h3>
+        <div className="quote__container">
           {data.map((d, i) => (
             <div className="list">
-              <div className="course">
-                <div className="course__title course__margin">
-                  <h4>Course Title:</h4>
-                  <h5>{d.title}</h5>
+              <div className="quote">
+                <div className="quote__title quote__margin">
+                  <h4>Quote:</h4>
+                  <h5>{d.quote}</h5>
                 </div>
-                <div className="course__title">
-                  <h4>Course Description:</h4>
-                  <p>{d.description}</p>
+                <div className="quote__title">
+                  <h4>Author:</h4>
+                  <p>{d.author}</p>
                 </div>
               </div>
-              <div className="course__buttons">
+              <div className="quote__buttons">
                 <Button color="primary" onClick={() => handelOpen(d._id)}>
                   Update
                 </Button>
@@ -125,15 +126,15 @@ function App() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Update Course Details</DialogTitle>
+        <DialogTitle id="form-dialog-title">Update Quote Details</DialogTitle>
         <DialogContent>
-          <DialogContentText>Enter Title and Description</DialogContentText>
+          <DialogContentText>Enter Quote and Author</DialogContentText>
           <TextField
             autoFocus
             inputRef={titleURef}
             margin="dense"
             id="title"
-            label="Title"
+            label="Quote"
             type="text"
             fullWidth
           />
@@ -142,7 +143,7 @@ function App() {
             inputRef={desURef}
             margin="dense"
             id="description"
-            label="Description"
+            label="Author"
             type="text"
             fullWidth
           />
