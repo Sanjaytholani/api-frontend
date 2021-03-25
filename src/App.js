@@ -16,10 +16,10 @@ function App() {
   const baseURL = process.env.REACT_APP_API_KEY;
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
-  const titleRef = useRef(null);
-  const desRef = useRef(null);
-  const titleURef = useRef(null);
-  const desURef = useRef(null);
+  const quoteRef = useRef(null);
+  const authorRef = useRef(null);
+  const quoteURef = useRef(null);
+  const authorURef = useRef(null);
   useEffect(() => {
     axios
       .get(baseURL)
@@ -30,13 +30,13 @@ function App() {
     e.preventDefault();
     axios
       .post(baseURL, {
-        quote: titleRef.current.value,
-        author: desRef.current.value,
+        quote: quoteRef.current.value,
+        author: authorRef.current.value,
       })
       .then(function (response) {
         console.log(response);
-        titleRef.current.value = "";
-        desRef.current.value = "";
+        quoteRef.current.value = "";
+        authorRef.current.value = "";
       })
       .catch(function (error) {
         console.log(error);
@@ -57,8 +57,8 @@ function App() {
   const handelUpdate = () => {
     axios
       .patch(`${baseURL}/${id}`, {
-        quote: titleURef.current.value,
-        author: desURef.current.value,
+        quote: quoteURef.current.value,
+        author: authorURef.current.value,
       })
       .then((response) => {
         alert("Quote updated");
@@ -72,15 +72,15 @@ function App() {
         <h4>Enter Quote and Author</h4>
         <TextField
           margin="dense"
-          id="title"
+          id="quote"
           label="Quote"
-          inputRef={titleRef}
+          inputRef={quoteRef}
         />
         <TextField
           margin="dense"
-          id="description"
+          id="author"
           label="Author"
-          inputRef={desRef}
+          inputRef={authorRef}
         />
         <Button type="submit" onClick={handelSubmit}>
           Add Quote
@@ -128,18 +128,18 @@ function App() {
           <DialogContentText>Enter Quote and Author</DialogContentText>
           <TextField
             autoFocus
-            inputRef={titleURef}
+            inputRef={quoteURef}
             margin="dense"
-            id="title"
+            id="quote"
             label="Quote"
             type="text"
             fullWidth
           />
           <TextField
             autoFocus
-            inputRef={desURef}
+            inputRef={authorURef}
             margin="dense"
-            id="description"
+            id="author"
             label="Author"
             type="text"
             fullWidth
